@@ -3,39 +3,35 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.container {
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-  border: 3px solid blue;
-  background-color: rgb(1,0,0);
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
 }
 </style>
 </head>
 <body>
-
 <div class="container">
-  <div class="center">
-  <h3 id="demo" style="color: rgb(191, 64, 191);"></h3>
+
+  <div class="center" style="background-color: rgb(0,1,0);">
+    <p id="demo" style="color: rgb(191, 64, 191)"></p>
+  </div>
+
+  <div class="center" style="background-color: rgb(0,1,0);">
+    <p id="demo1" style="color: rgb(191, 64, 191)"></p>
+  </div>
+
+  <div class="center" style="background-color: rgb(0,1,0);">
+    <p id="demo2" style="color: rgb(191, 64, 191)"></p>
   </div>
 </div>
-<!-- <div class="center" style="background-color: rgb(0,1,0);">
-  <p id="demo" style="color: red"></p>
-</div> -->
-
-
+<p id="demo"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("April 30, 2023 17:00:00").getTime();
+var countDownDate = new Date("October 18, 2023 00:00:00").getTime();
+var startDate = new Date("January 11, 2023 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -44,18 +40,40 @@ var x = setInterval(function() {
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+  var distancecom = now - startDate;
     
   // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  var dayscom = Math.floor(distancecom / (1000 * 60 * 60 * 24));
+  var hourscom = Math.floor((distancecom % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutescom = Math.floor((distancecom % (1000 * 60 * 60)) / (1000 * 60));
+  var secondscom = Math.floor((distancecom % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+  document.getElementById("demo").innerHTML = Math.floor(dayscom/7) + " WEEK " + dayscom%7 + " DAYS "+ hourscom + "h "
+  + minutescom + "m " + secondscom + "s Completed";
+
+  // Find the distance between now and the count down date
+  var distancerem = countDownDate - now;
     
+  // Time calculations for days, hours, minutes and seconds
+  var daysrem = Math.floor(distancerem / (1000 * 60 * 60 * 24));
+  var hoursrem = Math.floor((distancerem % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutesrem = Math.floor((distancerem % (1000 * 60 * 60)) / (1000 * 60));
+  var secondsrem = Math.floor((distancerem % (1000 * 60)) / 1000);
+
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo1").innerHTML = Math.floor(daysrem/7) + " WEEK " + daysrem%7 + " DAYS "+ hoursrem + "h "
+  + minutesrem + "m " + secondsrem + "s Remaining";
+  
+  // Find the distance between now and the count down date
+  var totalDistance = countDownDate - startDate;
+  var totalDays = Math.floor(totalDistance / (1000 * 60 * 60 * 24));
+  var percentCom = ((dayscom/totalDays)*100);
+  
+  // Output the result in an element with id="demo"
+  document.getElementById("demo2").innerHTML = ((dayscom/totalDays)*100).toFixed(2) + " % Completed ";
+  
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
